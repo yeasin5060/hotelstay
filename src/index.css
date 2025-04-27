@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+   --color-primary : #2563EB;
+   --color-secondary : #FBBF24
+}
+
+               /* import google font */
+ @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
  .container {
     width: 1280px;
     margin:  0 auto;
+ }
+
+ * {
+   font-family: Outfit;
+ }
+
+ .font-playfari{
+   font-family: Playfair !important;
  }

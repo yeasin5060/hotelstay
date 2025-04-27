@@ -16,19 +16,19 @@ const Navbar = () => {
             <Link to='/' className='text-gray-700 hover:text-blue-600 transition'>
               Home
             </Link>
-            <Link to='hotel' className="text-gray-700 hover:text-blue-600 transition">
+            <Link to='hotel' className='text-gray-700 hover:text-blue-600 transition'>
               Hotel
             </Link>
-            <Link to='exprience' className="text-gray-700 hover:text-blue-600 transition">
+            <Link to='exprience' className='text-gray-700 hover:text-blue-600 transition'>
               Expreience
             </Link>
-            <Link to="about" className="text-gray-700 hover:text-blue-600 transition">
+            <Link to="about" className='text-gray-700 hover:text-blue-600 transition'>
               About
             </Link>
           </div>
          <div className='flex justify-end items-center gap-x-4'>
-            <div className="text-black">
-                <input className="w-[200px] h-[30px] bg-[#c0b8b8] py-2 px-4 rounded-[10px] border-0 outline-0" type="search" placeholder="search" />
+            <div className='text-black'>
+                <input className='w-[200px] h-[30px] bg-[#c0b8b8] py-2 px-4 rounded-[10px] border-0 outline-0' type='search' placeholder='search' />
             </div>
             <div className='flex justify-center items-center'>
                 <button className='text-white text-[18px] font-bold py-[10px] px-[30px] bg-black rounded-[10px] outline-0 border-0 cursor-pointer capitalize'>login</button>
