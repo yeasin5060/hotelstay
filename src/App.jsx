@@ -4,6 +4,8 @@ import {
   RouterProvider,
   Route
 }from "react-router-dom";
+
+      // all pages import heare
 import Main from "./layout/Main";
 import Home from "./pages/Home";
 import Hotel from "./pages/Hotel";
@@ -17,7 +19,7 @@ function App() {
       <Route>
         <Route element = {<Main/>}>
           <Route path="/" element = {<Home/>}/>
-          <Route path="/hotel" element = {<Hotel/>}/>
+          <Route path="/rooms" element = {<Hotel/>}/>
           <Route path="/about" element = {<About/>}/>
           <Route path="/exprience" element = {<Exprience/>}/>
         </Route>

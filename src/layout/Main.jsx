@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Footer from './Footer'
 
 const Main = () => {
+
+  const isOwnerPath = useLocation().pathname.includes("owner")
   return (
     <>
-        <Navbar/>
+        {!isOwnerPath && <Navbar/> }
             <Outlet/>
         <Footer/>
     </>
