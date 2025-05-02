@@ -1,18 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { assets } from '../assets/assets';
+import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
+
+// --------- SVG code for Book Icon------
+const BookIcon = ()=>(
+  <svg className="w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
+  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4" />
+</svg>
+
+)
 const Navbar = () => {
 
-  const [isScrolled , setIsScrolled] = useState(false)
-  const [isOpenMenu , setIsOpenMenu] = useState(false)
+  const [isScrolled , setIsScrolled] = useState(false);
+  const [isOpenMenu , setIsOpenMenu] = useState(false);
+
+  const {openSignIn} = useClerk();
+  const {user} = useUser();
+  const navigate = useNavigate();
+  const location = useLocation();
+
 
   useEffect (() => {
+
+    if(location.pathname !==  '/'){
+      setIsScrolled(true)
+      return;
+    }else{
+      setIsScrolled(false)
+    }
+
+    setIsScrolled(prev => location.pathname !== '/' ? true : prev)
       const handleScroll = () => {
         setIsScrolled(window.scrollY > 10)
-      }
+      };
       window.addEventListener('scroll' , handleScroll);
-      return () => window.removeEventListener('scroll' , handleScroll)
-  },[])
+      return () => window.removeEventListener('scroll' , handleScroll);
+  },[location.pathname]);
   
   return (
     <nav className={`fixed top-0 left-0 w-full  px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? 'bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4' : 'py-4 md:py-6'} `}>
@@ -38,17 +62,32 @@ const Navbar = () => {
             <Link to="about" className='text-white text-[16px] font-semibold'>
               About
             </Link>
-            <div className='flex justify-center items-center'>
-              <button className='text-white text-[16px] font-semibold py-[6px] px-[20px] rounded-[15px] outline-0 border-[1px] border-rose-50 cursor-pointer capitalize transition-all'>dashboard</button>
-            </div>
+            {
+              user && 
+              <div className='flex justify-center items-center'>
+                <button className='text-white text-[16px] font-semibold py-[6px] px-[20px] rounded-[15px] outline-0 border-[1px] border-rose-50 cursor-pointer capitalize transition-all' onClick={() => navigate('/owner')}>dashboard</button>
+              </div>
+            }
           </div>
          <div className='flex justify-end items-center gap-x-4'>
             <div className='text-black'>
-                <input className='w-[200px] h-[30px] bg-[#c0b8b8] py-2 px-4 rounded-[10px] border-0 outline-0' type='search' placeholder='search' />
+              <input className='w-[200px] h-[30px] bg-[#c0b8b8] py-2 px-4 rounded-[10px] border-0 outline-0' type='search' placeholder='search' />
             </div>
-            <div className='flex justify-center items-center'>
-                <button className='text-white text-[18px] font-bold py-[10px] px-[30px] bg-black rounded-[10px] outline-0 border-0 cursor-pointer capitalize'>login</button>
-            </div>
+            {
+             user 
+              ?
+              (
+               <UserButton>
+                  <UserButton.MenuItems>
+                    <UserButton.Action label='My Bookings' labelIcon = {<BookIcon/>} onClick={()=> navigate('/my-bookings')}/>
+                  </UserButton.MenuItems>
+               </UserButton>
+              )
+              :
+              (<div className='flex justify-center items-center'>
+                  <button onClick={openSignIn} className='text-white text-[18px] font-bold py-[10px] px-[30px] bg-black rounded-[10px] outline-0 border-0 cursor-pointer capitalize'>login</button>
+                </div>)
+              }
          </div>
         </div>
       </div>
@@ -78,7 +117,7 @@ const Navbar = () => {
             <button className='text-black text-[16px] font-semibold py-[6px] px-[20px] rounded-[15px] outline-0 border-[1px] border-rose-50 cursor-pointer capitalize transition-all'>dashboard</button>
           </div>
           <div className='flex justify-center items-center'>
-            <button className='text-white text-[18px] font-bold py-[10px] px-[30px] bg-black rounded-[10px] outline-0 border-0 cursor-pointer capitalize'>login</button>
+            <button onClick={openSignIn} className='text-white text-[18px] font-bold py-[10px] px-[30px] bg-black rounded-[10px] outline-0 border-0 cursor-pointer capitalize'>login</button>
           </div>
       </div>
     </nav>
