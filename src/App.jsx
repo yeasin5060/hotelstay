@@ -8,9 +8,9 @@ import {
       // all pages import heare
 import Main from "./layout/Main";
 import Home from "./pages/Home";
-import Hotel from "./pages/Hotel";
 import About from "./pages/About";
 import Exprience from "./pages/Exprience";
+import AllRooms from "./pages/AllRooms";
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       <Route>
         <Route element = {<Main/>}>
           <Route path="/" element = {<Home/>}/>
-          <Route path="/rooms" element = {<Hotel/>}/>
+          <Route path="/rooms" element = {<AllRooms/>}/>
           <Route path="/about" element = {<About/>}/>
           <Route path="/exprience" element = {<Exprience/>}/>
         </Route>

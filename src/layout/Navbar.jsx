@@ -53,7 +53,7 @@ const Navbar = () => {
             <Link to='/' className='text-white text-[16px] font-semibold'>
               Home
             </Link>
-            <Link to='hotel' className='text-white text-[16px] font-semibold'>
+            <Link to='rooms' className='text-white text-[16px] font-semibold'>
               Hotel
             </Link>
             <Link to='exprience' className='text-white text-[16px] font-semibold'>

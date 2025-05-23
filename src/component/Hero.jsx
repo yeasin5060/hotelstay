@@ -3,7 +3,7 @@ import Heading from '../utils/Headig'
 import { assets, cities } from '../assets/assets'
 const Hero = () => {
   return (
-    <div className='flex flex-col items-start justify-center px-6 md:px-16 ls:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-center bg-cover min-h-[750px] ca'>
+    <div className='flex flex-col items-start justify-center px-6 md:px-16 ls:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-center bg-cover min-h-[750px]'>
         <div className='container'>
             <div className='text-left mt-20'>
               <Heading level='p' text='The Ultimate Hotel Experience'className='w-[240px] bg-[#49B9FF]/50 px-3.5 px-1 rounded-full capitalize'/>

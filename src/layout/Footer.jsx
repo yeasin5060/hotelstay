@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className='bg-[[#E4EEF84F]]'>
       <div className='container'>
-        <div className='text-gray-500/80 pt-8 px-6 md:px-16 lg:px-24 xl:px-32'>
+        <div className='text-gray-500/80 pt-8'>
               <div className='flex flex-wrap justify-between gap-12 md:gap-6'>
                   <div className='max-w-80'>
                       <img src={assets.logo} alt="logo" className='mb-4 h-8 md:h-9 invert opacity-80' />
@@ -63,7 +63,7 @@ const Footer = () => {
               </div>
               <hr className='border-gray-300 mt-8' />
               <div className='flex flex-col md:flex-row gap-2 items-center justify-between py-5'>
-                  <p>© {new Date().getFullYear()} HomeStay. All rights reserved.</p>
+                  <p>© {new Date().getFullYear()} QuickStay. All rights reserved.</p>
                   <ul className='flex items-center gap-4'>
                       <li><Link to="#">Privacy</Link></li>
                       <li><Link to="#">Terms</Link></li>
