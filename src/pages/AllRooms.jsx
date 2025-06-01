@@ -54,7 +54,7 @@ const AllRooms = () => {
                               </div>
                               <div className='text-left'>
                                 <Heading level='p' text={room.hotel.city} className='text-[14px] font-medium text-[#838383] mb-[13px] capitalize'/>
-                                <Heading onClick={() => {navigate(`/rooms/${room._id}`) , scrollTo(0,0)}}  level='p' text={room.hotel.name} className='text-[26px] text-[#343434] font-normal capitalize mb-[13px] cursor-pointer'/>
+                                <p onClick={() => {navigate(`/rooms/${room._id}`) , scrollTo(0,0)}}   className='text-[26px] text-[#343434] font-normal capitalize mb-[13px] cursor-pointer'>{room.hotel.name}</p>
                                 <div className='flex items-center gap-x-[13px]'>
                                   <StarRation/>
                                   <Heading level='p' text='200+ reviews' className='text-[14px] font-normal text-[#000000]' />

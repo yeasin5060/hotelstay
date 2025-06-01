@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Exprience from "./pages/Exprience";
 import AllRooms from "./pages/AllRooms";
+import RoomDetail from "./pages/RoomDetail";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/rooms" element = {<AllRooms/>}/>
           <Route path="/about" element = {<About/>}/>
           <Route path="/exprience" element = {<Exprience/>}/>
+          <Route path="/rooms/:id" element = {<RoomDetail/>}/>
         </Route>
 
       </Route>
