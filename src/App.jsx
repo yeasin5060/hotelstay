@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Exprience from "./pages/Exprience";
 import AllRooms from "./pages/AllRooms";
 import RoomDetail from "./pages/RoomDetail";
+import MyBooking from "./pages/MyBooking";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element = {<About/>}/>
           <Route path="/exprience" element = {<Exprience/>}/>
           <Route path="/rooms/:id" element = {<RoomDetail/>}/>
+           <Route path="/my-bookings" element = {<MyBooking/>}/>
         </Route>
 
       </Route>
