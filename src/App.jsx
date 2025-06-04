@@ -13,12 +13,14 @@ import Exprience from "./pages/Exprience";
 import AllRooms from "./pages/AllRooms";
 import RoomDetail from "./pages/RoomDetail";
 import MyBooking from "./pages/MyBooking";
+import HotelReg from "./component/HotelReg";
 
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
+        {false && <HotelReg/>}
         <Route element = {<Main/>}>
           <Route path="/" element = {<Home/>}/>
           <Route path="/rooms" element = {<AllRooms/>}/>
