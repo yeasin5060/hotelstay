@@ -14,6 +14,10 @@ import AllRooms from "./pages/AllRooms";
 import RoomDetail from "./pages/RoomDetail";
 import MyBooking from "./pages/MyBooking";
 import HotelReg from "./component/HotelReg";
+import LayOut from "./pages/hotelOwner/LayOut";
+import Dashboard from "./pages/hotelOwner/Dashboard";
+import AddRoom from "./pages/hotelOwner/AddRoom";
+import ListRoom from "./pages/hotelOwner/ListRoom";
 
 
 function App() {
@@ -27,7 +31,12 @@ function App() {
           <Route path="/about" element = {<About/>}/>
           <Route path="/exprience" element = {<Exprience/>}/>
           <Route path="/rooms/:id" element = {<RoomDetail/>}/>
-           <Route path="/my-bookings" element = {<MyBooking/>}/>
+          <Route path="/my-bookings" element = {<MyBooking/>}/>
+          <Route path="/owner" element = {<LayOut/>}>
+              <Route index element = {<Dashboard/>}/>
+              <Route path="add-room" element = {<AddRoom/>}/>
+              <Route path="list-room" element = {<ListRoom/>}/>
+          </Route>
         </Route>
 
       </Route>
