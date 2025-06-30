@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.js';
 import { ClerkProvider } from '@clerk/clerk-react';
+import { AppProvider } from './context/AppContext.jsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -16,7 +17,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <Provider store={store}>
-        <App />
+        <AppProvider>
+          <App />
+        </AppProvider>
       </Provider>
     </ClerkProvider>
   </StrictMode>

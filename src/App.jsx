@@ -13,18 +13,15 @@ import Exprience from "./pages/Exprience";
 import AllRooms from "./pages/AllRooms";
 import RoomDetail from "./pages/RoomDetail";
 import MyBooking from "./pages/MyBooking";
-import HotelReg from "./component/HotelReg";
 import LayOut from "./pages/hotelOwner/LayOut";
 import Dashboard from "./pages/hotelOwner/Dashboard";
 import AddRoom from "./pages/hotelOwner/AddRoom";
 import ListRoom from "./pages/hotelOwner/ListRoom";
 
-
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        {false && <HotelReg/>}
         <Route element = {<Main/>}>
           <Route path="/" element = {<Home/>}/>
           <Route path="/rooms" element = {<AllRooms/>}/>
