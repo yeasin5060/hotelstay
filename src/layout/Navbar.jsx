@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { assets } from '../assets/assets';
-import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
+import { useClerk, UserButton} from '@clerk/clerk-react';
+import { useAppContext } from '../context/AppContext';
 
 // --------- SVG code for Book Icon------
 const BookIcon = ()=>(
@@ -16,10 +17,9 @@ const Navbar = () => {
   const [isOpenMenu , setIsOpenMenu] = useState(false);
 
   const {openSignIn} = useClerk();
-  const {user} = useUser();
-  const navigate = useNavigate();
   const location = useLocation();
 
+  const {user , navigate , isOwner , setShowHotelReg} = useAppContext()
 
   useEffect (() => {
 
@@ -64,9 +64,12 @@ const Navbar = () => {
             </Link>
             {
               user && 
+              ( 
               <div className='flex justify-center items-center'>
-                <button className='text-white text-[16px] font-semibold py-[6px] px-[20px] rounded-[15px] outline-0 border-[1px] border-rose-50 cursor-pointer capitalize transition-all' onClick={() => navigate('/owner')}>dashboard</button>
+                <button className='text-white text-[16px] font-semibold py-[6px] px-[20px] rounded-[15px] outline-0 border-[1px] border-rose-50 cursor-pointer capitalize transition-all' onClick={() => isOwner ? navigate('/owner') : setShowHotelReg(true)}> {isOwner ? 'dashboard' : 'list your hotel'} </button>
               </div>
+              
+              )
             }
           </div>
          <div className='flex justify-end items-center gap-x-4'>
