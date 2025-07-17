@@ -13,8 +13,8 @@ export const AppProvider = ({children}) => {
     const currency = import.meta.env.VITE_CURRENCY || '$';
     const navigate = useNavigate();
     const {user} = useUser();
-    const {getToken} = useAuth();
-
+    const {getToken} =  useAuth();
+    
     const [isOwner , setIsOwner] = useState(false);
     const [showHotelReg , setShowHotelReg] = useState(false);
     const [searchedCities , setSearchedCities] = useState([]);
@@ -22,6 +22,8 @@ export const AppProvider = ({children}) => {
     const fetchUser = async () => {
         try {
             const {data} = await axios.get('/api/user' , {headers : {Authorization : `Bearer ${await getToken()}`}});
+            console.log(data);
+            
             if(data.success) {
                 setIsOwner(data.role === 'hotelOwner');
                 setSearchedCities(data.recentSearchedCities);

@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
-import { roomsDummyData } from '../../assets/assets'
 import Heading from '../../utils/Headig'
+import { useAppContext } from '../../context/AppContext';
 
 const ListRoom = () => {
-  const [listRoom ,setListRoom] = useState(roomsDummyData)
+  const [listRoom ,setListRoom] = useState([]);
+  const {axios , getToken , user} = useAppContext();
+
+  // Fetch Rooms of the Hotel Owner
+
+  const fetchRooms = async () => {
+    try {
+      const {data} = await axios.get('/api/rooms/owner' , )
+    } catch (error) {
+      
+    }
+  }
   return (
     <div>
       <Heading level='h2' text='room listing' className='text-[40px] text-[#252525] font-semibold font-playfair mb-[9px] capitalize'/>

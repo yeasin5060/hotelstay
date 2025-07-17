@@ -18,6 +18,7 @@ const Navbar = () => {
 
   const {openSignIn} = useClerk();
   const location = useLocation();
+  
 
   const {user , navigate , isOwner , setShowHotelReg} = useAppContext()
 

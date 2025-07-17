@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../component/hotelOwner/Navbar'
 import Sidebar from '../../component/hotelOwner/Sidebar'
 import { Outlet } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext'
 
 const LayOut = () => {
+  const {isOwner , navigate} = useAppContext();
+
+ /* useEffect( () => {
+    if(!isOwner){
+      navigate('/')
+    }
+  },[isOwner])*/
   return (
     <div className='bg-white'>
         <div className='container'>
