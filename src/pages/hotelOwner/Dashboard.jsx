@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import Heading from '../../utils/Headig'
-import { assets, dashboardDummyData } from '../../assets/assets'
+import { useAppContext } from '../../context/AppContext'
+
 
 const Dashboard = () => {
-  const [dashboardData , setDashboardData] = useState(dashboardDummyData)
+
+  const {axios , getToken , currency , user , toast} = useAppContext()
+  
+  const [dashboardData , setDashboardData] = useState({
+    bookings : [],
+    totalBookings : 0,
+    totalRevenue : 0
+  })
   return (
     <div>
       <Heading level='h2' text='Dashboard' className='text-[40px] text-[#252525] font-semibold font-playfair mb-[9px] capitalize'/>

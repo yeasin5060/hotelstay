@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../../utils/Headig'
 import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
 
 const ListRoom = () => {
   const [listRoom ,setListRoom] = useState([]);
@@ -10,11 +11,36 @@ const ListRoom = () => {
 
   const fetchRooms = async () => {
     try {
-      const {data} = await axios.get('/api/rooms/owner' , )
+      const {data} = await axios.get('/api/rooms/owner' , {headers : {Authorization : `Bearer ${await getToken()}`}});
+      if(data.success){
+        setListRoom(data.rooms)
+        toast.success(data.message);
+      }else{
+        toast.error(data.message);
+      }
     } catch (error) {
-      
+       toast.error(error.message);
     }
   }
+
+  //Toggle Avaialability of the Room
+
+  const toggleAvailability = async (roomId) => {
+    const {data} = await axios.post('/api/rooms/togol-availability' , {roomId} , {headers : {Authorization : `Bearer ${await getToken()}`}})
+
+    if(data.success){
+        toast.success(data.message);
+        fetchRooms()
+      }else{
+        toast.error(data.message);
+      }
+  }
+
+  useEffect(() => {
+    if(user){
+      fetchRooms()
+    }
+  },[user])
   return (
     <div>
       <Heading level='h2' text='room listing' className='text-[40px] text-[#252525] font-semibold font-playfair mb-[9px] capitalize'/>
@@ -45,7 +71,7 @@ const ListRoom = () => {
                     </td>
                      <td className='py-3 px-4 text-red-500 border-t border-gray-300 text-sm text-center'>
                       <label htmlFor='' className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3'>
-                        <input type='checkbox' className='sr-only peer' checked ={room.isAvailable}/>
+                        <input onChange={() => toggleAvailability(room._id)} type='checkbox' className='sr-only peer' checked ={room.isAvailable}/>
                         <div className='w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200'></div>
                         <span className='dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5'></span>
                       </label>
