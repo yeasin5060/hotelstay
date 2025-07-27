@@ -1,17 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../../utils/Headig'
 import { useAppContext } from '../../context/AppContext'
+import { assets } from '../../assets/assets'
 
 
 const Dashboard = () => {
 
   const {axios , getToken , currency , user , toast} = useAppContext()
-  
+
   const [dashboardData , setDashboardData] = useState({
     bookings : [],
     totalBookings : 0,
     totalRevenue : 0
   })
+
+  const fetchDashbordData = async () => {
+    try {
+      const {data} = await axios.get('/api/booking' , {headers : {Authorization : `Bearer ${await getToken()}`}});
+      if(data.success){
+        setDashboardData(data.dashboardData)
+        toast.success(data.message);
+      }else{
+        toast.error(data.message);
+      }
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    if(user){
+      fetchDashbordData()
+    }
+  },[user])
   return (
     <div>
       <Heading level='h2' text='Dashboard' className='text-[40px] text-[#252525] font-semibold font-playfair mb-[9px] capitalize'/>
@@ -30,7 +51,7 @@ const Dashboard = () => {
           <img className='max-sm:hidden h-10' src={assets.totalRevenueIcon} alt="not found" />
           <div className='flex flex-col sm:ml-4 font-medium'>
             <Heading level='p' text='total revenue'className='text-blue-500 text-sm capitalize'/>
-            <Heading level='p' text={dashboardData.totalRevenue} className='text-neutral-400 text-base'/>
+            <p className='text-neutral-400 text-base'>{currency}{dashboardData.totalRevenue} </p>
           </div>
         </div>
       </div>
@@ -56,7 +77,7 @@ const Dashboard = () => {
                     {item.room.roomType}
                   </td>
                   <td className='py-3 px-4 text-gray-700 border-t border-gray-300 text-center'>
-                    {item.totalPrice}
+                    {currency} {item.totalPrice}
                   </td>
                   <td className='py-3 px-4 border-t border-gray-300 flex'>
                     <button className={`py-1 px-3 text-xs rounded-full mx-auto ${item.isPaid ? 'bg-green-200 text-green-600' : 'bg-amber-200 text-yellow-600'}`}>

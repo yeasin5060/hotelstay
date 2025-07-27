@@ -1,13 +1,12 @@
 import React from 'react'
-import { roomsDummyData } from '../assets/assets'
 import HotelCard from './HotelCard'
 import Heading from '../utils/Headig'
-import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 
 
 const FeaturedDestination = () => {
-    const navigate = useNavigate()
-  return (
+    const {rooms , navigate} = useAppContext()
+  return rooms.length > 0 && (
     <div className='bg-[#D9D9D9] pt-[96px] pb-[78px]'>
         <div className='container'>
             <div className='text-center'>
@@ -17,7 +16,7 @@ const FeaturedDestination = () => {
                 </div>
                 <div className='mt-[65px] flex items-center justify-between'>
                     {
-                    roomsDummyData.slice(0,4).map((room , index)=>(
+                    rooms.slice(0,4).map((room , index)=>(
                         <HotelCard key={room._id} room={room} index={index}/>
                     ))
                     }
