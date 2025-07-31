@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Heading from '../utils/Headig'
 import { assets, cities } from '../assets/assets'
+import { useAppContext } from '../context/AppContext'
 const Hero = () => {
+  const {navigate , user , getToken , axios ,} = useAppContext()
+  const {destination , setDestination} = useState('')
   return (
     <div className='flex flex-col items-start justify-center px-6 md:px-16 ls:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-center bg-cover min-h-[750px]'>
         <div className='container'>
