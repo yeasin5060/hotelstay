@@ -92,7 +92,7 @@ const RoomDetail = () => {
         </div>
         <div className='grid grid-cols-2 gap-4 lg:w-1/2 w-full'>
           {
-            room?.images.length > 1 && room.images.map((image , index)=>(
+            room.images.map((image , index)=>(
               <img className={`w-full rounded-xl shadow-md object-cover cursor-pointer ${mainImage === image && 'outline -3 outline-orange-500'}`} onClick={()=> setMainImage(image)} key={index} src={image} alt="not found" />
             ))
           }

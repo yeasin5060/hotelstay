@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Heading from '../utils/Headig'
-import { assets, userBookingsDummyData } from '../assets/assets'
+
 import { useState } from 'react'
+import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
 
 const MyBooking = () => {
-  const[bookings , setBookings] = useState(userBookingsDummyData)
+  const {axios , getToken , user} = useAppContext();
+  const[bookings , setBookings] = useState([]);
+
+  const fetchUserBooking = async ()=> {
+    try {
+      const {data} = await axios.get('/api/bookings/user', {headers : {Authorization : `Bearer ${await getToken()}`}});
+       if(data.success){
+          setBookings(data.bookings)
+        }else{
+          toast.error(data.message);
+        };
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+  useEffect(()=> {
+    if(user){
+      fetchUserBooking();
+    }
+  },[user]);
   return (
     <div className='bg-white'>
         <div className='container'>
